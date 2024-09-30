@@ -1,1 +1,1 @@
-python tmvec_embedding_generate.py --input-fasta ../example/uniprot_5_proteins.fasta --tm-vec-model ../Rostlab/tm_vec_swiss_model.ckpt --tm-vec-config-path ../Rostlab/tm_vec_swiss_model_params.json --output ./result/
+python tmvec_embedding_generate.py --input-fasta ./example/uniprot_5_proteins.fasta --tm-vec-model ./Rostlab/tm_vec_swiss_model.ckpt --tm-vec-config-path ./Rostlab/tm_vec_swiss_model_params.json --device cuda --output ./result/
