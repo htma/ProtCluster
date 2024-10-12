@@ -6,6 +6,7 @@
 import os
 import time
 import numpy as np
+import seaborn as sns
 import argparse
 import pickle
 import random
@@ -30,10 +31,17 @@ print(embeddings.shape) # 10x512
 
 # Apply UMAP to reduce the embeddings to 2 dimensions
 embeddings_2d = UMAP(random_state=0).fit_transform(embeddings)
-print(embeddings_2d)
-plt.scatter(embeddings_2d[:,0],
-            embeddings_2d[:,1])
+#print(embeddings_2d)
+#plt.scatter(embeddings_2d[:,0],
+ #           embeddings_2d[:,1])
 
+sns.scatterplot(x=embeddings_2d[:,0], y=embeddings_2d[:,1])
+plt.xlabel("UMAP 0")
+plt.ylabel("UMAP 1")
+plt.xticks([])
+plt.yticks([])
+
+plt.title("NMPFamsDB Sequence Bacteria F000013")
 plt.gca().set_aspect('equal', 'datalim') # setting scale y-unit/x-unit
 
 plt.show()
