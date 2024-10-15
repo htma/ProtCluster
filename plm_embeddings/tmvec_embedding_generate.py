@@ -66,20 +66,24 @@ parser.add_argument("--threads",
 args = parser.parse_args()
 
 # Set device
-if args.device == 'cpu':
-    device = torch.device('cpu')
+if args.device == 'cuda':
+    print('Models will be loaded on GPU.')
+    device = torch.device('cuda')
 elif torch.cuda.is_available() and args.device is not None:
-    if args.device == 'gpu':
+    if args.device == 'cuda':
+        print('Models will be loaded on GPU.')
         device = torch.device(f'cuda:0')
     else:
+        print('Models will be loaded on GPU.')
         device = torch.device(f'cuda:{int(args.device)}')
 else:
+    print('Models will be loaded on CPU.')
     device = torch.device('cpu')
 
 if args.protrans_model is None:
     # Load the ProtTrans model and ProtTrans tokenizer
-    tokenizer = T5Tokenizer.from_pretrained("../Rostlab/prot_t5_xl_uniref50", do_lower_case=False )
-    model = T5EncoderModel.from_pretrained("../Rostlab/prot_t5_xl_uniref50")
+    tokenizer = T5Tokenizer.from_pretrained("Rostlab/prot_t5_xl_uniref50", do_lower_case=False )
+    model = T5EncoderModel.from_pretrained("Rostlab/prot_t5_xl_uniref50")
 else:
     tokenizer = T5Tokenizer.from_pretrained(args.protrans_model, do_lower_case=False )
     model = T5EncoderModel.from_pretrained(args.protrans_model)
