@@ -1,0 +1,28 @@
+'''
+   embedding_analysis: analysis embeddings produced from PLM.
+   ref: https://github.com/swansonk14/language_models_biology/blob/main/Protein_Language_Model_Demo.ipynb
+   created on Sep 26, 2024, mht
+'''
+import os
+import time
+import numpy as np
+import argparse
+import pickle
+import random
+from pathlib import Path
+
+from lshashpy3.lshash import LSHash
+
+parser = argparse.ArgumentParser(description='Process TM-Vec arguments', add_help=True)
+
+parser.add_argument("--input-embedding",
+                    type=Path,
+                    required=False,
+                    default="./example/result/embeddings.npy",
+                    help=("Input embedding in pkl format to encode LSH.")
+                    )
+
+# load arguments
+args = parser.parse_args()
+
+embeddings = np.load(args.input_embedding)
